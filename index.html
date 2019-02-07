@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pong Game</title>
+  </head>
+  <body>
+    <div class="game-wrapper">
+      <h1>Best Pong Game</h1>
+      <div id="game"></div>
+      <!-- Rough-out your SVG mark-up here to start... -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        viewBox="0 0 512 256"
+        width="512"
+        height="256"
+        preserveAspectRatio="none"
+      >
+	  <!-- Main Rect -->
+	  <rect
+          x="0"
+          y="0"
+          width="512"
+          height="256"
+          fill="#353535"
+          stroke="#000000"
+		/>
+		<!-- Paddles -->
+		<rect
+          x="10"
+          y="100"
+          width="8"
+          height="56"
+          fill="#FFFFFF"
+          stroke="#FFFFFF"
+          stroke-width="5"
+        />
+        <rect
+          x="494"
+          y="100"
+          width="8"
+          height="56"
+          fill="#FFFFFF"
+          stroke="#FFFFFF"
+          stroke-width="5"
+		/>
+		<!-- Center line -->
+        <line
+          x1="256"
+          y1="0"
+          x2="256"
+          y2="300"
+          stroke="#FFFFFF"
+          stroke-dasharray="15"
+          stroke-width="4"
+		/>
+		<!-- Ball -->
+        <circle fill="#FFFFFF"cx="256" cy="128" r="8" />
+      </svg>
+    </div>
+    <script type="text/javascript" src="build/bundle.js"></script>
+  </body>
+</html>
