@@ -6,6 +6,7 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.ping = new Audio("public/sounds/pong-01.wav");
     //set X and Y coordinates at the center
     this.reset();
   }
@@ -54,6 +55,7 @@ export default class Ball {
         //AND is the ball Y >= top of the paddle AND <= the bottom of the paddle?
       ) {
         this.vx = -this.vx;
+        this.ping.play()
       }
       //top detection
       if (this.y + this.radius >= topY && this.x >= rightX && this.x <= leftX) {
@@ -82,6 +84,7 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx = -this.vx;
+        this.ping.play()
       }
       //top detection
       if (this.y + this.radius >= topY && this.x >= rightX && this.x <= leftX) {
