@@ -1,6 +1,7 @@
 import { SVG_NS, KEYS } from "../settings";
 import Board from "./Board";
 import Paddles from "./Paddles";
+import Ball from "./Ball";
 
 export default class Game {
   constructor(element, width, height) {
@@ -34,9 +35,23 @@ export default class Game {
       KEYS.up,
       KEYS.down
     );
+
+    this.ballRadius = 8;
+    this.ball = new Ball(this.ballRadius, this.width, this.height);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === KEYS.spaceBar) {
+        this.pause = !this.pause;
+      }
+    });
   }
 
   render() {
+    //pause game
+    if (this.pause) {
+      return;
+    }
+
     // empty out game element before re-rendering
     this.gameElement.innerHTML = "";
 
@@ -53,5 +68,7 @@ export default class Game {
 
     this.player1.render(svg);
     this.player2.render(svg);
+    this.ball.render(svg, this.player1, this.player2);
+    
   }
 }

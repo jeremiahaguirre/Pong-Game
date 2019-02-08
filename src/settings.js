@@ -8,4 +8,3 @@ export const KEYS = {
   down: "ArrowDown",
   spaceBar: " "
 };
-
