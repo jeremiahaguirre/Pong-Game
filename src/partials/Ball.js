@@ -37,7 +37,7 @@ export default class Ball {
   }
 
   paddleCollision(player1, player2) {
-    if (this.vx > 0 || this.vy > 0) {
+    if (this.vx > 0) {
       //detect player 2 collision
       let paddle = player2.coordinates(
         player2.x,
@@ -45,7 +45,7 @@ export default class Ball {
         player2.width,
         player2.height
       );
-      let { leftX, topY, bottomY } = paddle;
+      let { leftX, rightX, topY, bottomY } = paddle;
       if (
         this.x + this.radius >= leftX &&
         this.y >= topY &&
@@ -55,7 +55,18 @@ export default class Ball {
       ) {
         this.vx = -this.vx;
       }
-    //   if(y)
+      //top detection
+      if (this.y + this.radius >= topY && this.x >= rightX && this.x <= leftX) {
+        this.vy = -this.vy;
+      }
+      //bottom detection
+      if (
+        this.y - this.radius >= bottomY &&
+        this.x >= rightX &&
+        this.x <= leftX
+      ) {
+        this.vy = -this.vy;
+      }
     } else {
       //detect player 1 collision
       let paddle = player1.coordinates(
@@ -64,7 +75,7 @@ export default class Ball {
         player1.width,
         player1.height
       );
-      let {rightX, topY, bottomY}=paddle;
+      let { leftX, rightX, topY, bottomY } = paddle;
       if (
         this.x - this.radius <= rightX &&
         this.y >= topY &&
@@ -72,7 +83,26 @@ export default class Ball {
       ) {
         this.vx = -this.vx;
       }
+      //top detection
+      if (this.y + this.radius >= topY && this.x >= rightX && this.x <= leftX) {
+        this.vy = -this.vy;
+      }
+      //bottom detection
+      if (
+        this.y - this.radius >= bottomY &&
+        this.x >= rightX &&
+        this.x <= leftX
+      ) {
+        this.vy = -this.vy;
+      }
     }
+  }
+
+  goal(player) {
+    // increment the player score by one
+    //reset ball in the middle
+    player.score++;
+    this.reset();
   }
 
   render(svg, player1, player2) {
@@ -89,5 +119,17 @@ export default class Ball {
     circle.setAttributeNS(null, "fill", "#FFFFFF");
 
     svg.appendChild(circle);
+
+    //detect a goal
+    const rightGoal = this.x + this.radius >= this.boardWidth;
+    const leftGoal = this.x - this.radius <= 0;
+
+    if (rightGoal) {
+      this.goal(player1);
+      this.direction = 1;
+    } else if (leftGoal) {
+      this.goal(player2);
+      this.direction = -1;
+    }
   }
 }
