@@ -55,17 +55,17 @@ export default class Ball {
         //AND is the ball Y >= top of the paddle AND <= the bottom of the paddle?
       ) {
         this.vx = -this.vx;
-        this.ping.play()
+        this.ping.play();
       }
       //top detection
-      if (this.y + this.radius >= topY && this.x >= rightX && this.x <= leftX) {
+      if (this.y + this.radius >= topY && this.x <= rightX && this.x >= leftX) {
         this.vy = -this.vy;
       }
       //bottom detection
       if (
-        this.y - this.radius >= bottomY &&
-        this.x >= rightX &&
-        this.x <= leftX
+        this.y + this.radius <= bottomY &&
+        this.x <= rightX &&
+        this.x >= leftX
       ) {
         this.vy = -this.vy;
       }
@@ -84,17 +84,17 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx = -this.vx;
-        this.ping.play()
+        this.ping.play();
       }
       //top detection
-      if (this.y + this.radius >= topY && this.x >= rightX && this.x <= leftX) {
+      if (this.y + this.radius >= topY && this.x <= rightX && this.x >= leftX) {
         this.vy = -this.vy;
       }
       //bottom detection
       if (
-        this.y - this.radius >= bottomY &&
-        this.x >= rightX &&
-        this.x <= leftX
+        this.y + this.radius <= bottomY &&
+        this.x <= rightX &&
+        this.x >= leftX
       ) {
         this.vy = -this.vy;
       }

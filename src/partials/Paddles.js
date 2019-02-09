@@ -1,7 +1,7 @@
 import { SVG_NS } from "../settings";
 
 export default class Paddle {
-  constructor(boardHeight, width, height, x, y, upKey, downKey,mouseX,mouseY) {
+  constructor(boardHeight, width, height, x, y, upKey, downKey) {
     this.boardHeight = boardHeight;
     this.width = width;
     this.height = height;
@@ -19,16 +19,24 @@ export default class Paddle {
           break;
       }
     });
-    document.addEventListener('click', event =>{
-      switch (event.key) {
-        case mouseX:
-          this.up();
-          break;
-        case mouseY:
-          this.down();
-          break;
+    function throttled(delay, fn) {
+      let lastCall = 0;
+      return function (...args) {
+        const now = (new Date).getTime();
+        if (now - lastCall < delay) {
+          return;
+        }
+        lastCall = now;
+        return fn(...args);
+      }
+    }
+    const myHandler = ('mousemove', event => {
+      while (event.screenY) {
+        console.log(event.screenY);
       }
     });
+    const dHandler = throttled(1000, myHandler);
+    document.addEventListener("mousemove", dHandler);
   }
   up() {
     this.y = Math.max(0, this.y - this.speed);
@@ -42,7 +50,7 @@ export default class Paddle {
     let rightX = x + width;
     let topY = y;
     let bottomY = y + height;
-    return {leftX, rightX, topY, bottomY};
+    return { leftX, rightX, topY, bottomY };
   }
 
   render(svg) {
