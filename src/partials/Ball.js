@@ -58,9 +58,13 @@ export default class Ball {
         this.ping.play();
       }
       //top detection
-      if (this.y + this.radius >= topY && this.x <= rightX && this.x >= leftX) {
+      if (
+        this.y + this.radius >= topY && 
+        this.x <= rightX && 
+        this.x >= leftX
+        ){
         this.vy = -this.vy;
-      }
+       }
       //bottom detection
       if (
         this.y + this.radius <= bottomY &&

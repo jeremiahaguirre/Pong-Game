@@ -46,6 +46,9 @@ export default class Game {
       }
     });
 
+    if (this.score == 10) {
+      return this.pause;
+    }
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
   }
@@ -56,6 +59,9 @@ export default class Game {
       return;
     }
 
+    if (this.score >= 10) {
+      return this.pause;
+    }
     // empty out game element before re-rendering
     this.gameElement.innerHTML = "";
 

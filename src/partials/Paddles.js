@@ -19,25 +19,8 @@ export default class Paddle {
           break;
       }
     });
-    function throttled(delay, fn) {
-      let lastCall = 0;
-      return function (...args) {
-        const now = (new Date).getTime();
-        if (now - lastCall < delay) {
-          return;
-        }
-        lastCall = now;
-        return fn(...args);
-      }
-    }
-    const myHandler = ('mousemove', event => {
-      while (event.screenY) {
-        console.log(event.screenY);
-      }
-    });
-    const dHandler = throttled(1000, myHandler);
-    document.addEventListener("mousemove", dHandler);
   }
+
   up() {
     this.y = Math.max(0, this.y - this.speed);
   }
@@ -65,15 +48,3 @@ export default class Paddle {
     svg.appendChild(rect);
   }
 }
-
-// var computer_speed = 6;
-
-// function Player2() {
-//   // Move the player 2 AI paddle up or down
-//   // based on the 'y' position of the ball
-//   if (paddle2_x + paddle_height/2 < ball_y){
-//       paddle2_x += computer_speed;
-//   } else {
-//       paddle2_y -= computer_speed;
-//   }
-// }
