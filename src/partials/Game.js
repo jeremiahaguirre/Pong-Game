@@ -3,6 +3,7 @@ import Board from "./Board";
 import Paddles from "./Paddles";
 import Ball from "./Ball";
 import Score from "./Score";
+import Win from "./Win";
 
 export default class Game {
   constructor(element, width, height) {
@@ -46,22 +47,24 @@ export default class Game {
       }
     });
 
-    if (this.score == 10) {
-      return this.pause;
-    }
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
+    this.win = new Win(this.width / 2 - 50, 30, 30);
+    
   }
-
+  stopGame() {
+    if (this.player1.score === 5 || this.player2.score === 5) {
+      return true;
+    }else{ 
+      return false;}
+  }
+  
   render() {
     //pause game
     if (this.pause) {
       return;
     }
 
-    if (this.score >= 10) {
-      return this.pause;
-    }
     // empty out game element before re-rendering
     this.gameElement.innerHTML = "";
 
@@ -83,5 +86,9 @@ export default class Game {
 
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
+    this.stopGame(svg, this.player1.score);
+    
+    
   }
+  
 }

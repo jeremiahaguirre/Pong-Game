@@ -1,4 +1,5 @@
 import { SVG_NS } from "../settings";
+import Win from "./Win";
 
 export default class Ball {
   constructor(radius, boardWidth, boardHeight) {
@@ -9,7 +10,9 @@ export default class Ball {
     this.ping = new Audio("public/sounds/pong-01.wav");
     //set X and Y coordinates at the center
     this.reset();
+
   }
+
   // Ball.js
   reset() {
     this.x = this.boardWidth / 2;
@@ -58,16 +61,12 @@ export default class Ball {
         this.ping.play();
       }
       //top detection
-      if (
-        this.y + this.radius >= topY && 
-        this.x <= rightX && 
-        this.x >= leftX
-        ){
+      if (this.y + this.radius <= topY && this.x <= rightX && this.x >= leftX) {
         this.vy = -this.vy;
-       }
+      }
       //bottom detection
       if (
-        this.y + this.radius <= bottomY &&
+        this.y + this.radius >= bottomY &&
         this.x <= rightX &&
         this.x >= leftX
       ) {
@@ -91,12 +90,12 @@ export default class Ball {
         this.ping.play();
       }
       //top detection
-      if (this.y + this.radius >= topY && this.x <= rightX && this.x >= leftX) {
+      if (this.y + this.radius <= topY && this.x <= rightX && this.x >= leftX) {
         this.vy = -this.vy;
       }
       //bottom detection
       if (
-        this.y + this.radius <= bottomY &&
+        this.y + this.radius >= bottomY &&
         this.x <= rightX &&
         this.x >= leftX
       ) {
