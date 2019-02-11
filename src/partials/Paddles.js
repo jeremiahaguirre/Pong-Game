@@ -19,6 +19,12 @@ export default class Paddle {
           break;
       }
     });
+if (this.x<this.boardHeight){
+    document.addEventListener("mousemove", event => {
+      this.y = event.clientY*.8-50;
+      
+    });
+  }
   }
 
   up() {
