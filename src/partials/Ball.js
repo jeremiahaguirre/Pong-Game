@@ -10,7 +10,6 @@ export default class Ball {
     this.ping = new Audio("public/sounds/pong-01.wav");
     //set X and Y coordinates at the center
     this.reset();
-
   }
 
   // Ball.js
@@ -61,8 +60,9 @@ export default class Ball {
         this.ping.play();
       }
       //top detection
-      if (this.y + this.radius <= topY && this.x <= rightX && this.x >= leftX) {
+      if (this.y - this.radius <= topY && this.x <= rightX && this.x >= leftX) {
         this.vy = -this.vy;
+        this.ping.play();
       }
       //bottom detection
       if (
@@ -71,6 +71,7 @@ export default class Ball {
         this.x >= leftX
       ) {
         this.vy = -this.vy;
+        this.ping.play();
       }
     } else {
       //detect player 1 collision
@@ -90,8 +91,9 @@ export default class Ball {
         this.ping.play();
       }
       //top detection
-      if (this.y + this.radius <= topY && this.x <= rightX && this.x >= leftX) {
+      if (this.y - this.radius <= topY && this.x <= rightX && this.x >= leftX) {
         this.vy = -this.vy;
+        this.ping.play();
       }
       //bottom detection
       if (
@@ -100,6 +102,7 @@ export default class Ball {
         this.x >= leftX
       ) {
         this.vy = -this.vy;
+        this.ping.play();
       }
     }
   }
