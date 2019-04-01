@@ -50,15 +50,15 @@ export default class Game {
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
     this.win = new Win(this.width / 2 - 50, 30, 30);
-    
   }
   stopGame() {
-    if (this.player1.score === 5 || this.player2.score === 5) {
+    if (this.player1.score === 10 || this.player2.score === 10) {
       return true;
-    }else{ 
-      return false;}
+    } else {
+      return false;
+    }
   }
-  
+
   render() {
     //pause game
     if (this.pause) {
@@ -87,8 +87,5 @@ export default class Game {
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
     this.stopGame(svg, this.player1.score);
-    
-    
   }
-  
 }
