@@ -6,10 +6,12 @@ import Score from "./Score";
 import Win from "./Win";
 
 export default class Game {
-  constructor(element, width, height) {
+  constructor(element, width, height, player1, player2) {
     this.element = element;
     this.width = width;
     this.height = height;
+    this.player1 = "player1";
+    this.player2 = "player2";
 
     this.gameElement = document.getElementById(this.element);
 
@@ -26,7 +28,8 @@ export default class Game {
       this.boardGap,
       (this.height - this.paddleHeight) / 2,
       KEYS.a,
-      KEYS.z
+      KEYS.z,
+      this.player1
     );
     this.player2 = new Paddles(
       this.height,
@@ -35,7 +38,8 @@ export default class Game {
       this.width - (this.paddleWidth + this.boardGap),
       (this.height - this.paddleHeight) / 2,
       KEYS.up,
-      KEYS.down
+      KEYS.down,
+      this.player2
     );
 
     this.ballRadius = 8;
