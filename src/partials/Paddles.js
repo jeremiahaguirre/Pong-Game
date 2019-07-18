@@ -1,7 +1,7 @@
 import { SVG_NS } from "../settings";
 
 export default class Paddle {
-  constructor(boardHeight, width, height, x, y, up, down, player) {
+  constructor(boardHeight, width, height, x, y, player) {
     this.boardHeight = boardHeight;
     this.width = width;
     this.height = height;
@@ -19,6 +19,7 @@ export default class Paddle {
       },
       true
     );
+
     document.addEventListener(
       "keyup",
       event => {
@@ -27,16 +28,6 @@ export default class Paddle {
       true
     );
 
-    // document.addEventListener("keydown", event => {
-    //   switch (event.key) {
-    //     case upKey:
-    //       this.up();
-    //       break;
-    //     case downKey:
-    //       this.down();
-    //       break;
-    //   }
-    // });
     // if (this.x<this.boardHeight){
     //     document.addEventListener("mousemove", event => {
     //       this.y = event.clientY*.8-50;
@@ -77,6 +68,7 @@ export default class Paddle {
     let rect = document.createElementNS(SVG_NS, "rect");
 
     rect.setAttributeNS(null, "width", this.width);
+    rect.setAttributeNS(null, "id", "paddle");
     rect.setAttributeNS(null, "height", this.height);
     rect.setAttributeNS(null, "y", this.y);
     rect.setAttributeNS(null, "x", this.x);

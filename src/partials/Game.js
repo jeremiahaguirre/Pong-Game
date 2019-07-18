@@ -1,4 +1,4 @@
-import { SVG_NS, KEYS } from "../settings";
+import { SVG_NS, KEYS, PaddleOptions } from "../settings";
 import Board from "./Board";
 import Paddles from "./Paddles";
 import Ball from "./Ball";
@@ -17,28 +17,20 @@ export default class Game {
 
     this.board = new Board(this.width, this.height);
 
-    this.paddleWidth = 8;
-    this.paddleHeight = 56;
-    this.boardGap = 10;
-
     this.player1 = new Paddles(
       this.height,
-      this.paddleWidth,
-      this.paddleHeight,
-      this.boardGap,
-      (this.height - this.paddleHeight) / 2,
-      KEYS.a,
-      KEYS.z,
+      PaddleOptions.paddleWidth,
+      PaddleOptions.paddleHeight,
+      PaddleOptions.boardGap,
+      (this.height - PaddleOptions.paddleHeight) / 2,
       this.player1
     );
     this.player2 = new Paddles(
       this.height,
-      this.paddleWidth,
-      this.paddleHeight,
-      this.width - (this.paddleWidth + this.boardGap),
-      (this.height - this.paddleHeight) / 2,
-      KEYS.up,
-      KEYS.down,
+      PaddleOptions.paddleWidth,
+      PaddleOptions.paddleHeight,
+      this.width - (PaddleOptions.paddleWidth + PaddleOptions.boardGap),
+      (this.height - PaddleOptions.paddleHeight) / 2,
       this.player2
     );
 

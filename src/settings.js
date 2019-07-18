@@ -7,3 +7,9 @@ export const KEYS = {
   down: "ArrowDown",
   spaceBar: " "
 };
+
+export const PaddleOptions = {
+  paddleWidth: 8,
+  paddleHeight: 56,
+  boardGap: 10
+};
