@@ -15,7 +15,7 @@ export default class Paddle {
     document.addEventListener(
       "keydown",
       event => {
-        this.keyState[event.key || event.which] = true;
+        this.keyState[event.key] = true;
       },
       true
     );
@@ -23,17 +23,10 @@ export default class Paddle {
     document.addEventListener(
       "keyup",
       event => {
-        this.keyState[event.key || event.which] = false;
+        this.keyState[event.key] = false;
       },
       true
     );
-
-    // if (this.x<this.boardHeight){
-    //     document.addEventListener("mousemove", event => {
-    //       this.y = event.clientY*.8-50;
-
-    //     });
-    //   }
   }
 
   up() {
